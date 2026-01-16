@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:kanban="clr-namespace:Syncfusion.Maui.Kanban;assembly=Syncfusion.Maui.Kanban"
+             xmlns:local="clr-namespace:KeepCardSample"
+             x:Class="KeepCardSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:CustomizationViewModel/>
+    </ContentPage.BindingContext>
+
+    <kanban:SfKanban x:Name="kanban" 
+                     DragEnd="OnKanbanCardDragEnd" 
+                     DragStart="OnKanbanCardDragStart"
+                     AutoGenerateColumns="False"
+                     ItemsSource="{Binding MenuItems}">
+        <kanban:SfKanban.CardTemplate>
+            <DataTemplate >
+                <Border BackgroundColor="AliceBlue" 
+                        StrokeShape="RoundRectangle 6">
+                    <Grid ColumnSpacing="10" RowSpacing="8" ColumnDefinitions="50,*" RowDefinitions="Auto, Auto, Auto">
+                        <Grid Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="10">
+                            <Grid ColumnSpacing="10" RowSpacing="8" ColumnDefinitions="50,*" RowDefinitions="Auto, Auto, Auto">
+                                <Image Grid.Row="0" 
+                                       Grid.RowSpan="3"
+                                       HeightRequest="50" 
+                                       WidthRequest="50"
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center" 
+                                       Source="{Binding Image}"/>
+                                <Label Grid.Column="1"
+                                       Text="{Binding ItemName}" 
+                                       TextColor="Black"
+                                       FontFamily="Roboto-Medium"  
+                                       FontSize="14" 
+                                       CharacterSpacing="0.1" 
+                                       LineBreakMode="NoWrap"
+                                       VerticalOptions="Fill"
+                                       HorizontalOptions="Start"
+                                       HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       FontFamily="Roboto-Regular" 
+                                       Opacity="0.8"  
+                                       FontSize="14" 
+                                       CharacterSpacing="0.1"
+                                       HorizontalOptions="Fill" 
+                                       VerticalOptions="Fill"
+                                       Text="{Binding Description}" 
+                                       TextColor="Black"
+                                       LineBreakMode="WordWrap" 
+                                       HorizontalTextAlignment="Start"/>
+                            </Grid>
+                        </Grid>
+                        <Path Grid.Row="2"
+                              Grid.Column="2"
+                              HorizontalOptions="End"
+                              VerticalOptions="End"
+                              Fill="Orange"
+                              Data="M24 0V16C24 20.4183 20.4183 24 16 24H0L24 0Z"
+                              HeightRequest="24"
+                              WidthRequest="24" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </kanban:SfKanban.CardTemplate>
+        <kanban:SfKanban.Columns>
+            <kanban:KanbanColumn Title="Menu"
+                         Categories="Menu">
+            </kanban:KanbanColumn>
+            <kanban:KanbanColumn Title="Order"
+                         Categories="Order for Dining">
+            </kanban:KanbanColumn>
+            <kanban:KanbanColumn Title="Ready to Serve"
+                         Categories="Ready to Serve">
+            </kanban:KanbanColumn>
+            <kanban:KanbanColumn Title="Ready to Deliver"
+                         Categories="Ready to Delivery">
+            </kanban:KanbanColumn>
+        </kanban:SfKanban.Columns>
+    </kanban:SfKanban>
+
+</ContentPage>
